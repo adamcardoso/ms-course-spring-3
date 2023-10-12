@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  sqlserver:
+    container_name: sqlserver
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: SemperFi!
+      ACCEPT_EULA: Y
+    ports:
+      - "1433:1433"
+    networks:
+      - sqlserver
+    restart: unless-stopped
+
+networks:
+  sqlserver:
+    driver: bridge
+
+volumes:
+  sqlserver:
