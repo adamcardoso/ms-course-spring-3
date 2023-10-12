@@ -34,4 +34,9 @@ public class StudentServiceImpl implements StudentService {
     public void saveStudent(Student student) {
         this.studentRepository.save(student);
     }
+
+    @Override
+    public List<Student> findAllStudentsBySchool(Integer schoolId) {
+        return studentRepository.findAllBySchoolId(schoolId);
+    }
 }

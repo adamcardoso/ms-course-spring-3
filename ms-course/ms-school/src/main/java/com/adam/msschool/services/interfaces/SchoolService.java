@@ -1,5 +1,6 @@
 package com.adam.msschool.services.interfaces;
 
+import com.adam.msschool.domain.FullSchoolResponse;
 import com.adam.msschool.domain.School;
 import com.adam.msschool.dtos.SchoolDTO;
 
@@ -12,4 +13,6 @@ public interface SchoolService {
     List<School> findAllSchools();
 
     void saveSchool(School school);
+
+    FullSchoolResponse findSchoolsWithStudents(Integer schoolId);
 }

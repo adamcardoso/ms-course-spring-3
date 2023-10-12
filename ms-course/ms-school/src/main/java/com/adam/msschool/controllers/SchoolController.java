@@ -1,6 +1,7 @@
 package com.adam.msschool.controllers;
 
 
+import com.adam.msschool.domain.FullSchoolResponse;
 import com.adam.msschool.domain.School;
 import com.adam.msschool.dtos.SchoolDTO;
 import com.adam.msschool.services.interfaces.SchoolService;
@@ -16,17 +17,25 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SchoolController {
 
-    private final SchoolService schoolService;
+    private final SchoolService service;
 
     @PostMapping
-    public ResponseEntity<School> createSchools(@RequestBody SchoolDTO schoolDTO) {
-        School newSchools = schoolService.createSchool(schoolDTO);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(newSchools);
+    @ResponseStatus(HttpStatus.CREATED)
+    public void save(
+            @RequestBody School school
+    ) {
+        service.saveSchool(school);
     }
 
     @GetMapping
-    public ResponseEntity<List<School>> findAllSchools(){
-        return ResponseEntity.ok(schoolService.findAllSchools());
+    public ResponseEntity<List<School>> findAllSchools() {
+        return ResponseEntity.ok(service.findAllSchools());
+    }
+
+    @GetMapping("/with-students/{school-id}")
+    public ResponseEntity<FullSchoolResponse> findAllSchools(
+            @PathVariable("school-id") Integer schoolId
+    ) {
+        return ResponseEntity.ok(service.findSchoolsWithStudents(schoolId));
     }
 }

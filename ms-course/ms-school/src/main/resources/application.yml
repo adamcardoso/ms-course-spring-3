@@ -1,26 +1,5 @@
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
-server:
-  port: 8070
-
 spring:
   application:
-    name: ms-schools
+    name: schools
   config:
     import: optional:configserver:http://localhost:8888
-  datasource:
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost:1433;databaseName=schools
-    username: username
-    password: password
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    database: SQL_SERVER
-    show-sql: true
